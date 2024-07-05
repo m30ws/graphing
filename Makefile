@@ -24,10 +24,12 @@ INCLUDE_DIRS = -I./src
 LIB_DIRS = -L./lib/win_x86
 
 # Flags
-CFLAGS = -std=c++11 -O3 # -g
+CFLAGS = -std=c++11 -O3
 LFLAGS = -lSDL2main -lSDL2 -lSDL2_ttf #-lSDL2_net
 
-CFLAGS += -Wl,--subsystem,console
+CFLAGS += -Wl,--subsystem,windows
+
+DEBUG_FLAGS = # -g -Wl,--subsystem,console
 
 # Misc
 DEMO_DIR = demo/win_x86
@@ -37,7 +39,7 @@ DEMO_GRAPH_N_WINDOWS = 7 # 24 # 50 # :)
 
 # Compile
 all : 
-	$(CC) $(SRCS) $(INCLUDE_DIRS) $(LIB_DIRS) $(CFLAGS) $(LFLAGS) -o $(BUILD_DIR)/$(OUT_FILE)
+	$(CC) $(SRCS) $(INCLUDE_DIRS) $(LIB_DIRS) $(CFLAGS) $(LFLAGS) $(DEBUG_FLAGS) -o $(BUILD_DIR)/$(OUT_FILE)
 
 # Demo, no compile
 demon :
