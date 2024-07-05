@@ -69,7 +69,7 @@ BUILD_DIR = build/linux_x86
 OUT_FILE = graphing
 
 # Additional include dirs
-INCLUDE_DIRS = -L/usr/include/SDL2 -I./src
+INCLUDE_DIRS = -I/usr/include/SDL2 -I./src
 
 # Additional lib dirs
 LIB_DIRS = # -L./lib/linux_x86
