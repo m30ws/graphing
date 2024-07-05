@@ -49,7 +49,7 @@ The executables will simply reside in the same directory where they can be run. 
 ## 🛠 Requirements
 - SDL2 (and SDL2ttf)
 
-`cJSON` and `uthash` libraries come included in appropriate directories. For Windows, SDL2 headers, its extensions and its `.lib` files also come included, while Linux version by default uses distro-provided SDL2. Only Windows and Linux are currently explicitly supported.
+`cJSON` and `uthash` libraries come included in appropriate directories. For Windows, SDL2 headers, its extensions and its `.dll` files also come included, while Linux version by default uses distro-provided SDL2. Only Windows and Linux are currently explicitly supported.
 
 ## 📊 Reference
 The following reference refers to using the `graphing.h` itself.
