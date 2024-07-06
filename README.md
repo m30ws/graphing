@@ -20,7 +20,7 @@ Some of the planned features for the future are loading parameters from a JSON c
 
 ### Main program
 
-To compile simply use `make` with no args.
+To compile the program simply use `make` with no args. If you are on Windows and are unable to run GNU make, refer to `makewin.bat`.
 
 You can also compile the code and run a sample python program that simulates a UDP server receiving data and forwards it to the compiled program in real-time.
 ```console
