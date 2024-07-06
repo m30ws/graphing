@@ -44,7 +44,7 @@ all :
 # Demo, no compile
 demon :
 	cp $(BUILD_DIR)/$(OUT_FILE) ./$(DEMO_DIR)/
-	cd ./$(DEMO_DIR)/ && $(PY) graphing.py $(DEMO_GRAPH_N_WINDOWS) && cd ..
+	cd ./$(DEMO_DIR)/ ; $(PY) graphing.py $(DEMO_GRAPH_N_WINDOWS) ; cd ../..
 
 # Recompile, then demo
 demo : all demon
@@ -95,7 +95,7 @@ all :
 # Demo, no compile
 demon :
 	cp $(BUILD_DIR)/$(OUT_FILE) ./$(DEMO_DIR)/
-	cd ./$(DEMO_DIR)/ ; $(PY) graphing.py $(DEMO_GRAPH_N_WINDOWS) ; cd ..
+	cd ./$(DEMO_DIR)/ ; $(PY) graphing.py $(DEMO_GRAPH_N_WINDOWS) ; cd ../..
 
 # Recompile, then demo
 demo : all demon
