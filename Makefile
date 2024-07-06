@@ -51,8 +51,7 @@ demo : all demon
 
 # cls
 clean :
-	rm -f ./$(BUILD_DIR)/*.pdb
-	rm -f ./$(BUILD_DIR)/*.exe
+	rm -f ./$(BUILD_DIR)/$(OUT_FILE)
 	rm -f ./$(BUILD_DIR)/*.pdb
 
 
@@ -102,8 +101,7 @@ demo : all demon
 
 # cls
 clean :
-	rm -f ./$(BUILD_DIR)/*.pdb
-	rm -f ./$(BUILD_DIR)/*.exe
+	rm -f ./$(BUILD_DIR)/$(OUT_FILE)
 	rm -f ./$(BUILD_DIR)/*.pdb
 
 endif

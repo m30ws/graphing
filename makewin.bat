@@ -10,8 +10,7 @@ rem    `make clean`
 echo.
 echo Running `make clean` ...
 
-del .\build\win_x86\*.pdb
-del .\build\win_x86\*.exe
+del .\build\win_x86\graphing.exe
 del .\build\win_x86\*.pdb
 
 rem    `make`
@@ -24,7 +23,7 @@ rem    `make demon`
 echo.
 echo Running `make demon` ...
 
-cp build\win_x86\graphing.exe .\demo\win_x86\
+copy /Y build\win_x86\graphing.exe .\demo\win_x86\
 cd .\demo\win_x86\
 py graphing.py 7
 cd ..\..
