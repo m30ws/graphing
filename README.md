@@ -1,4 +1,4 @@
-# graphing
+# ngraph
 Utility for real-time data plotting onto multiple graphs in separate windows, with parameters adjustable to your needs. Data set may also be plotted all in one go. Uses its own header-library for managing individual graphs which utilizes SDL2 directly.
 
 ## 🖥 Features
@@ -36,7 +36,7 @@ make clean
 ```
 
 ### Examples
-There are also a few examples that illustrate usage of `graphing.h` in the `examples/` folder. To build examples simply position yourself and build all at once or one by one:
+There are also a few examples that illustrate usage of `ngraph.h` in the `examples/` folder. To build examples simply position yourself and build all at once or one by one:
 ```console
 make
 make examples1
@@ -52,7 +52,7 @@ The executables will simply reside in the same directory where they can be run. 
 `cJSON` and `uthash` libraries come included in appropriate directories. For Windows, SDL2 headers, its extensions and its `.dll` files also come included, while Linux version by default uses distro-provided SDL2. Only Windows and Linux are currently explicitly supported.
 
 ## 📊 Reference
-The following reference refers to using the `graphing.h` itself.
+The following reference refers to using the `ngraph.h` itself.
 
 Available functions:
 ```c
@@ -74,12 +74,12 @@ Available structs and constants:
 
 ```c
 // bitmasks for need parameter for graph_finish_setup
-#define GRAPHING_ID     0x8
-#define GRAPHING_COLOR  0x4
-#define GRAPHING_TITLE  0x2
-#define GRAPHING_FONT   0x1
-#define GRAPHING_ALL    0xF  // refers to "all 4 preceding parameters"
-#define GRAPHING_NONE   0x0  // refers to "none of the preceding 4 parameters"
+#define NGRAPH_ID     0x8
+#define NGRAPH_COLOR  0x4
+#define NGRAPH_TITLE  0x2
+#define NGRAPH_FONT   0x1
+#define NGRAPH_ALL    0xF  // refers to "all 4 preceding parameters"
+#define NGRAPH_NONE   0x0  // refers to "none of the preceding 4 parameters"
 
 // predefined colors if not disabled
 #define BLACK       0x00,0x00,0x00

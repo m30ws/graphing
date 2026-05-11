@@ -11,11 +11,11 @@ CC = g++
 PY = py
 
 # Compile sources
-SRCS = src/graphing.cpp src/cJSON/*.c
+SRCS = src/ngraph.cpp src/cJSON/*.c
 
 # Binary
 BUILD_DIR = build/win_x86
-OUT_FILE = graphing.exe
+OUT_FILE = ngraph.exe
 
 # Additional include dirs
 INCLUDE_DIRS = -I./src
@@ -24,7 +24,7 @@ INCLUDE_DIRS = -I./src
 LIB_DIRS = -L./lib/win_x86
 
 # Flags
-CFLAGS = -std=c++11 -O3
+CFLAGS = -std=c++11 -O2
 LFLAGS = -lSDL2main -lSDL2 -lSDL2_ttf #-lSDL2_net
 
 CFLAGS += -Wl,--subsystem,windows
@@ -44,7 +44,7 @@ all :
 # Demo, no compile
 demon :
 	cp $(BUILD_DIR)/$(OUT_FILE) ./$(DEMO_DIR)/
-	cd ./$(DEMO_DIR)/ ; $(PY) graphing.py $(DEMO_GRAPH_N_WINDOWS) ; cd ../..
+	cd ./$(DEMO_DIR)/ ; $(PY) ngraph_demo.py $(DEMO_GRAPH_N_WINDOWS) ; cd ../..
 
 # Recompile, then demo
 demo : all demon
@@ -63,11 +63,11 @@ CC = g++
 PY = python3
 
 # Compile sources
-SRCS = src/graphing.cpp src/cJSON/*.c
+SRCS = src/ngraph.cpp src/cJSON/*.c
 
 # Binary
 BUILD_DIR = build/linux_x86
-OUT_FILE = graphing
+OUT_FILE = ngraph
 
 # Additional include dirs
 INCLUDE_DIRS = -I/usr/include/SDL2 -I./src
@@ -76,7 +76,7 @@ INCLUDE_DIRS = -I/usr/include/SDL2 -I./src
 LIB_DIRS = # -L./lib/linux_x86
 
 # Flags
-CFLAGS = -std=c++11 -O3 # -Wall
+CFLAGS = -std=c++11 -O2 # -Wall
 LFLAGS = -lSDL2 -lSDL2_ttf
 
 DEBUG_FLAGS = # -g # -fno-inline 
@@ -94,7 +94,7 @@ all :
 # Demo, no compile
 demon :
 	cp $(BUILD_DIR)/$(OUT_FILE) ./$(DEMO_DIR)/
-	cd ./$(DEMO_DIR)/ ; $(PY) graphing.py $(DEMO_GRAPH_N_WINDOWS) ; cd ../..
+	cd ./$(DEMO_DIR)/ ; $(PY) ngraph_demo.py $(DEMO_GRAPH_N_WINDOWS) ; cd ../..
 
 # Recompile, then demo
 demo : all demon
@@ -102,6 +102,7 @@ demo : all demon
 # cls
 clean :
 	rm -f ./$(BUILD_DIR)/$(OUT_FILE)
+	rm -f ./$(DEMO_DIR)/$(OUT_FILE)
 	rm -f ./$(BUILD_DIR)/*.pdb
 
 endif

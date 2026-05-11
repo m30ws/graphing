@@ -3,7 +3,7 @@
  *
  *	Available defines:
  *	==================
- *	#define GRAPHING_NO_AUTO_WIN_UPDATES
+ *	#define NGRAPH_NO_AUTO_WIN_UPDATES
  *	- by default whenever any one window is clicked, shown or (mini|maxi)mized
  *	  all will be re-focused which should give better experience but has worse
  *	  performance with a large amount of windows
@@ -25,11 +25,11 @@
 // #include "SDL2/SDL_net.h"
 
 /*#ifdef __linux
-#define GRAPHING_USE_SYSTEM_SDL
+#define NGRAPH_USE_SYSTEM_SDL
 #endif*/
 
-#define GRAPHING_NO_AUTO_WIN_UPDATES
-#include "graphing.h"
+#define NGRAPH_NO_AUTO_WIN_UPDATES
+#include "ngraph.h"
 
 #include "cJSON/cJSON.h"
 
@@ -303,7 +303,7 @@ int main(int argc, char* argv[])
 							SDL_FlushEvent(SDL_WINDOWEVENT);
 							break;
 
-					#ifndef GRAPHING_NO_AUTO_WIN_UPDATES
+					#ifndef NGRAPH_NO_AUTO_WIN_UPDATES
 
 						case SDL_WINDOWEVENT_FOCUS_GAINED:
 							int event_to_check = -1;
