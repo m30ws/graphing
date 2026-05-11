@@ -13,7 +13,7 @@
 #include <time.h>
 
 #include <SDL2/SDL.h>
-#include <ngraph.h>
+#include <graphing.h>
 
 #define RAND_LO -500
 #define RAND_HI +500

@@ -3,22 +3,22 @@
  * 
  *	Available defines:
  *	==================
- *	#define NGRAPH_NO_CACHING
+ *	#define GRAPHING_NO_CACHING
  *	- by default uses uthash.h library to cache legend textures and fonts
- *	#define NGRAPH_USE_MUTEX
+ *	#define GRAPHING_USE_MUTEX
  *	- use a mutex when adding/appending new points to a graph (default: no)
- *	#define NGRAPH_USE_SYSTEM_SDL
+ *	#define GRAPHING_USE_SYSTEM_SDL
  *	- by default includes SDL from src/SDL2/
  *	- define this to use #include <SDL2/SDL.h> instead of #include "SDL2/SDL.h"
- *	#define NGRAPH_NO_SRAND
+ *	#define GRAPHING_NO_SRAND
  *	- do not initialize srand(); assumes you will do so manually elsewhere
- *	#define NGRAPH_NO_DEFINED_COLORS
+ *	#define GRAPHING_NO_DEFINED_COLORS
  *	- do not define common constants such as BLACK, WHITE, RED... (default: it does.)
  * 
  */
 
-#ifndef __NGRAPH_H_
-#define __NGRAPH_H_
+#ifndef __GRAPHING_H_
+#define __GRAPHING_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -30,12 +30,12 @@ extern "C" {
 #include <string.h>
 #include <time.h>
 
-#ifndef NGRAPH_USE_SYSTEM_SDL
+#ifndef GRAPHING_USE_SYSTEM_SDL
 	#include "SDL2/SDL.h"
 	#include "SDL2/SDL_ttf.h"
 	#include "SDL2/SDL_thread.h"
 	// #include "SDL2/SDL_net.h"
-	#ifdef NGRAPH_USE_MUTEX
+	#ifdef GRAPHING_USE_MUTEX
 		#include "SDL2/SDL_mutex.h"
 	#endif
 #else
@@ -43,12 +43,12 @@ extern "C" {
 	#include <SDL2/SDL_ttf.h>
 	#include <SDL2/SDL_thread.h>
 	// #include <SDL2/SDL_net.h>
-	#ifdef NGRAPH_USE_MUTEX
+	#ifdef GRAPHING_USE_MUTEX
 		#include <SDL2/SDL_mutex.h>
 	#endif
 #endif
 
-#ifndef NGRAPH_NO_CACHING
+#ifndef GRAPHING_NO_CACHING
 	#include "tdh/uthash.h"
 #endif
 
@@ -65,25 +65,25 @@ extern "C" {
  *  x  x  x  x   I    C      T       F
  *  -  -  -  -  id  color  title  fontpath
  */
-#define NGRAPH_ID     0x8
-#define NGRAPH_COLOR  0x4
-#define NGRAPH_TITLE  0x2
-#define NGRAPH_FONT   0x1
-#define NGRAPH_ALL    0xF
-#define NGRAPH_NONE   0x0
+#define GRAPHING_ID     0x8
+#define GRAPHING_COLOR  0x4
+#define GRAPHING_TITLE  0x2
+#define GRAPHING_FONT   0x1
+#define GRAPHING_ALL    0xF
+#define GRAPHING_NONE   0x0
 
-const char NGRAPH_DEFAULT_TITLE[]         = "--";
-const char NGRAPH_DEFAULT_FONT[]          = "selawk.ttf";
-#define NGRAPH_DEFAULT_FONTSIZE           12
+const char GRAPHING_DEFAULT_TITLE[]         = "--";
+const char GRAPHING_DEFAULT_FONT[]          = "selawk.ttf";
+#define GRAPHING_DEFAULT_FONTSIZE           12
 
-#ifndef NGRAPH_DEFAULT_WIDTH
-#define NGRAPH_DEFAULT_WIDTH              640 // 240
+#ifndef GRAPHING_DEFAULT_WIDTH
+#define GRAPHING_DEFAULT_WIDTH              640 // 240
 #endif
-#ifndef NGRAPH_DEFAULT_HEIGHT
-#define NGRAPH_DEFAULT_HEIGHT             480 // 180
+#ifndef GRAPHING_DEFAULT_HEIGHT
+#define GRAPHING_DEFAULT_HEIGHT             480 // 180
 #endif
 
-#ifndef NGRAPH_NO_DEFINED_COLORS
+#ifndef GRAPHING_NO_DEFINED_COLORS
 	#define BLACK                           0x00,0x00,0x00
 	#define WHITE                           0xFF,0xFF,0xFF
 	#define RED                             0xD0,0x00,0x00
@@ -94,30 +94,30 @@ const char NGRAPH_DEFAULT_FONT[]          = "selawk.ttf";
 	#define PURPLE     	                    0xD0,0x00,0xD0
 	#define GOLD                            0xD1,0x8B,0x00
 
-	#define NGRAPH_DEFAULT_BG_COLOR       LIGHT_GRAY
-	#define NGRAPH_DEFAULT_FG_COLOR       BLACK
-	#define NGRAPH_DEFAULT_PLOT_COLOR     PURPLE
+	#define GRAPHING_DEFAULT_BG_COLOR       LIGHT_GRAY
+	#define GRAPHING_DEFAULT_FG_COLOR       BLACK
+	#define GRAPHING_DEFAULT_PLOT_COLOR     PURPLE
 #else
-	#define NGRAPH_DEFAULT_BG_COLOR       0xF0,0xF0,0xF0
-	#define NGRAPH_DEFAULT_FG_COLOR       0x00,0x00,0x00
-	#define NGRAPH_DEFAULT_PLOT_COLOR     0xD0,0x00,0xC0
+	#define GRAPHING_DEFAULT_BG_COLOR       0xF0,0xF0,0xF0
+	#define GRAPHING_DEFAULT_FG_COLOR       0x00,0x00,0x00
+	#define GRAPHING_DEFAULT_PLOT_COLOR     0xD0,0x00,0xC0
 #endif
 
-#define NGRAPH_DEFAULT_BG_ALPHA           0xFF
-#define NGRAPH_DEFAULT_FG_ALPHA           0x00
-#define NGRAPH_DEFAULT_PLOT_ALPHA         0xFF
+#define GRAPHING_DEFAULT_BG_ALPHA           0xFF
+#define GRAPHING_DEFAULT_FG_ALPHA           0x00
+#define GRAPHING_DEFAULT_PLOT_ALPHA         0xFF
 
-#define NGRAPH_DEFAULT_TITLE_SIZE         32+1
+#define GRAPHING_DEFAULT_TITLE_SIZE         32+1
 
-#define NGRAPH_DEFAULT_AMP                1000
-#define NGRAPH_DEFAULT_N                  500
+#define GRAPHING_DEFAULT_AMP                1000
+#define GRAPHING_DEFAULT_N                  500
 
-#define NGRAPH_DEFAULT_YSEGMENTS          2
-#define NGRAPH_DEFAULT_XSEGMENTS          5
+#define GRAPHING_DEFAULT_YSEGMENTS          2
+#define GRAPHING_DEFAULT_XSEGMENTS          5
 
-#define NGRAPH_DEFAULT_XMARGIN            50
-#define NGRAPH_DEFAULT_YMARGIN            10
-#define NGRAPH_DEFAULT__EXTENDED_YMARGIN  20
+#define GRAPHING_DEFAULT_XMARGIN            50
+#define GRAPHING_DEFAULT_YMARGIN            10
+#define GRAPHING_DEFAULT__EXTENDED_YMARGIN  20
 
 typedef struct {
 	SDL_Window* window;
@@ -171,7 +171,7 @@ typedef struct {
 	float* points_f;
 	SDL_FPoint* _render_points_f;
 
-	#ifdef NGRAPH_USE_MUTEX
+	#ifdef GRAPHING_USE_MUTEX
 	SDL_mutex* mutex; //
 	#endif
 
@@ -211,7 +211,7 @@ typedef struct
 } graph_setup_t;
 
 
-#ifndef NGRAPH_NO_CACHING
+#ifndef GRAPHING_NO_CACHING
 
 	typedef struct font_entry_ {
 		TTF_Font* font; // switch to using subtable for fontsizes (path repeats for each)?
@@ -263,8 +263,8 @@ uint32_t graph_finish_setup(graph_setup_t* setup, uint8_t need);  // Fills missi
                                                                   //   of the fields need this, to see which ones look under Bitmasks).
 
 // Internal
-unsigned long ngraph_random_id();
-void ngraph_srand();
+unsigned long graphing_random_id();
+void graphing_srand();
 //int randint(int high, int low=0);
 
 TTF_Font* graph_open_default_font_();
@@ -278,9 +278,9 @@ void close_window(Window* w);
 
 
 /* */
-void ngraph_srand()
+void graphing_srand()
 {
-	#ifndef NGRAPH_NO_SRAND
+	#ifndef GRAPHING_NO_SRAND
 		static uint8_t firsttime = 1;
 		if (firsttime) {
 			srand(time(NULL));
@@ -295,20 +295,20 @@ void ngraph_srand()
 /*
 int randint(int high, int low = 0)
 {
-	ngraph_srand();
+	graphing_srand();
 	return (int)((float)rand() / RAND_MAX * (high - low) + low);
 }
 */
 
 
 /* */
-unsigned long ngraph_random_id()
+unsigned long graphing_random_id()
 {
 	/*struct timespec {
 		time_t   tv_sec;        // seconds
 		long     tv_nsec;       // nanoseconds
 	};*/
-	ngraph_srand();
+	graphing_srand();
 	struct timespec ts;
 	timespec_get(&ts, TIME_UTC);
 	// printf("# sec: %lu\n# nsec: %lu\n", (unsigned long)ts.tv_sec, (unsigned long)ts.tv_nsec);
@@ -324,31 +324,31 @@ graph_setup_t* graph_blank_setup()
 	*(data) = (graph_setup_t) {
 
 		// Unique window id
-		.idx                   = (int)ngraph_random_id(),
+		.idx                   = (int)graphing_random_id(),
 
 		// Window settings
-		.title                 = (char*)NGRAPH_DEFAULT_TITLE,
-		.width                 = NGRAPH_DEFAULT_WIDTH,
-		.height                = NGRAPH_DEFAULT_HEIGHT,
+		.title                 = (char*)GRAPHING_DEFAULT_TITLE,
+		.width                 = GRAPHING_DEFAULT_WIDTH,
+		.height                = GRAPHING_DEFAULT_HEIGHT,
 		.xpos                  = SDL_WINDOWPOS_UNDEFINED,
 		.ypos                  = SDL_WINDOWPOS_UNDEFINED,
 
 		// Graph settings
-		.graph_amp             = NGRAPH_DEFAULT_AMP,
-		.graph_n               = NGRAPH_DEFAULT_N,
-		.ysegments             = NGRAPH_DEFAULT_YSEGMENTS,
-		.xsegments             = NGRAPH_DEFAULT_XSEGMENTS,
+		.graph_amp             = GRAPHING_DEFAULT_AMP,
+		.graph_n               = GRAPHING_DEFAULT_N,
+		.ysegments             = GRAPHING_DEFAULT_YSEGMENTS,
+		.xsegments             = GRAPHING_DEFAULT_XSEGMENTS,
 
-		.ymargin               = NGRAPH_DEFAULT_YMARGIN,
-		.xmargin               = NGRAPH_DEFAULT_XMARGIN,
-		._extended_ymargin     = NGRAPH_DEFAULT__EXTENDED_YMARGIN,
+		.ymargin               = GRAPHING_DEFAULT_YMARGIN,
+		.xmargin               = GRAPHING_DEFAULT_XMARGIN,
+		._extended_ymargin     = GRAPHING_DEFAULT__EXTENDED_YMARGIN,
 		
 		// Font & color settings
-		.font_path             = (char*)NGRAPH_DEFAULT_FONT,
-		.font_size             = NGRAPH_DEFAULT_FONTSIZE,
-		.fg_color              = {NGRAPH_DEFAULT_FG_COLOR},
-		.bg_color              = {NGRAPH_DEFAULT_BG_COLOR},
-		.plot_color            = {NGRAPH_DEFAULT_PLOT_COLOR},
+		.font_path             = (char*)GRAPHING_DEFAULT_FONT,
+		.font_size             = GRAPHING_DEFAULT_FONTSIZE,
+		.fg_color              = {GRAPHING_DEFAULT_FG_COLOR},
+		.bg_color              = {GRAPHING_DEFAULT_BG_COLOR},
+		.plot_color            = {GRAPHING_DEFAULT_PLOT_COLOR},
 
 		// Control whether this struct gets freed after 1 use (default=YES)
 		// Anything user-allocated is not freed !!
@@ -372,12 +372,12 @@ graph_setup_t* graph_blank_setup()
  *  x  x  x  x   I    C      T       F
  *  -  -  -  -  id  color  title  fontpath
  * 
- * NGRAPH_ID     0x8
- * NGRAPH_COLOR  0x4
- * NGRAPH_TITLE  0x2
- * NGRAPH_FONT   0x1
- * NGRAPH_ALL    0xF
- * NGRAPH_NONE   0x0
+ * GRAPHING_ID     0x8
+ * GRAPHING_COLOR  0x4
+ * GRAPHING_TITLE  0x2
+ * GRAPHING_FONT   0x1
+ * GRAPHING_ALL    0xF
+ * GRAPHING_NONE   0x0
  */
 uint32_t graph_finish_setup(graph_setup_t* setup, uint8_t need)
 {
@@ -385,11 +385,11 @@ uint32_t graph_finish_setup(graph_setup_t* setup, uint8_t need)
 	graph_setup_t* blank = graph_blank_setup();
 
 	// Unique window id
-	if (need & NGRAPH_ID)
+	if (need & GRAPHING_ID)
 		setup->idx = blank->idx;
 
 	// Window settings
-	if (need & NGRAPH_TITLE || setup->title == NULL)
+	if (need & GRAPHING_TITLE || setup->title == NULL)
 		setup->title = blank->title;
 
 	if (setup->width < 1)
@@ -428,13 +428,13 @@ uint32_t graph_finish_setup(graph_setup_t* setup, uint8_t need)
 		setup->_extended_ymargin = blank->_extended_ymargin;
 
 	// Font & color settings
-	if (need & NGRAPH_FONT || setup->font_path == NULL)
+	if (need & GRAPHING_FONT || setup->font_path == NULL)
 		setup->font_path = blank->font_path;
 
 	if (setup->font_size < 1)
 		setup->font_size = blank->font_size;
 
-	if (need & NGRAPH_COLOR)
+	if (need & GRAPHING_COLOR)
 		setup->plot_color = blank->plot_color;
 	
 	// Struct gets auto freed ?
@@ -449,14 +449,14 @@ uint32_t graph_finish_setup(graph_setup_t* setup, uint8_t need)
 /* */
 TTF_Font* graph_open_default_font_()
 {
-	printf("opening default font %s (%d)\n", NGRAPH_DEFAULT_FONT, NGRAPH_DEFAULT_FONTSIZE);
-	return TTF_OpenFont(NGRAPH_DEFAULT_FONT, NGRAPH_DEFAULT_FONTSIZE);
+	printf("opening default font %s (%d)\n", GRAPHING_DEFAULT_FONT, GRAPHING_DEFAULT_FONTSIZE);
+	return TTF_OpenFont(GRAPHING_DEFAULT_FONT, GRAPHING_DEFAULT_FONTSIZE);
 }
 /* */
 TTF_Font* graph_open_font_(const char* fpath, int fsize, uint8_t fallback_to_default)
 {
 	TTF_Font* res_fnt;
-	#ifndef NGRAPH_NO_CACHING
+	#ifndef GRAPHING_NO_CACHING
 		// Use if cached, otherwise load
 		font_entry_t* font_buff;
 		HASH_FIND_STR(g_font_cache, fpath, font_buff);
@@ -475,7 +475,7 @@ TTF_Font* graph_open_font_(const char* fpath, int fsize, uint8_t fallback_to_def
 			 */
 			} else if (fallback_to_default) {
 				printf("open font error: %s\n", TTF_GetError());
-				if (strcmp(fpath, NGRAPH_DEFAULT_FONT) != 0) {
+				if (strcmp(fpath, GRAPHING_DEFAULT_FONT) != 0) {
 					res_fnt = graph_open_font_(fpath, fsize, 0);
 				}
 			}
@@ -563,7 +563,7 @@ graph_t* graph_create(graph_setup_t* setup)
 		SDL_Surface* surf;
 		SDL_Texture* txt;
 
-		#ifndef NGRAPH_NO_CACHING
+		#ifndef GRAPHING_NO_CACHING
 			segmentsurf_entry_t *ss_buff, *ss_found;
 
 			ss_buff = (segmentsurf_entry_t*) malloc(sizeof(*ss_buff)); // segmentsurf_entry_t*
@@ -614,14 +614,14 @@ graph_t* graph_create(graph_setup_t* setup)
 		};
 		graph->ysegment_texts[ysegments_done] = (textpos_t){rect, txt};
 
-		#ifdef NGRAPH_NO_CACHING
+		#ifdef GRAPHING_NO_CACHING
 			SDL_FreeSurface(surf);
 		#endif
 
 		ysegments_done++;
 	}
 
-	#ifdef NGRAPH_USE_MUTEX
+	#ifdef GRAPHING_USE_MUTEX
 	graph->mutex = SDL_CreateMutex();
 	#endif
 
@@ -652,9 +652,9 @@ graph_t* graph_create(graph_setup_t* setup)
 /* */
 void graph_init_render_(graph_t* graph)
 {
-	SDL_SetRenderDrawColor(graph->window.renderer, graph->bg_color.r, graph->bg_color.g, graph->bg_color.b, NGRAPH_DEFAULT_BG_ALPHA);
+	SDL_SetRenderDrawColor(graph->window.renderer, graph->bg_color.r, graph->bg_color.g, graph->bg_color.b, GRAPHING_DEFAULT_BG_ALPHA);
 	SDL_RenderClear(graph->window.renderer);
-	SDL_SetRenderDrawColor(graph->window.renderer, graph->fg_color.r, graph->fg_color.g, graph->fg_color.b, NGRAPH_DEFAULT_FG_ALPHA);
+	SDL_SetRenderDrawColor(graph->window.renderer, graph->fg_color.r, graph->fg_color.g, graph->fg_color.b, GRAPHING_DEFAULT_FG_ALPHA);
 	// Redraw sidebar_scale
 	SDL_RenderDrawLines(graph->window.renderer, &graph->sidebar_scale[0], ARR_SIZE(graph->sidebar_scale));
 
@@ -672,7 +672,7 @@ void graph_destroy(graph_t* graph)
 	if (graph == NULL)
 		return;
 
-	#ifdef NGRAPH_USE_MUTEX
+	#ifdef GRAPHING_USE_MUTEX
 		SDL_DestroyMutex(graph->mutex);
 	#endif
 
@@ -682,7 +682,7 @@ void graph_destroy(graph_t* graph)
 
 	close_window(&graph->window);
 
-	#ifdef NGRAPH_NO_CACHING
+	#ifdef GRAPHING_NO_CACHING
 	if (graph->font) {
 		TTF_CloseFont(graph->font);
 		graph->font = NULL;
@@ -702,12 +702,12 @@ void graph_render(graph_t* graph)
 	// TODO: save color and restore after
 
 	SDL_Rect fillRect = {graph->xstart - 1, graph->ystart - 1, graph->xend, graph->yend};
-	SDL_SetRenderDrawColor(graph->window.renderer, graph->bg_color.r, graph->bg_color.g, graph->bg_color.b, NGRAPH_DEFAULT_BG_ALPHA); // white-grayish
+	SDL_SetRenderDrawColor(graph->window.renderer, graph->bg_color.r, graph->bg_color.g, graph->bg_color.b, GRAPHING_DEFAULT_BG_ALPHA); // white-grayish
 
 	SDL_RenderFillRect(graph->window.renderer, &fillRect);
 	// SDL_RenderClear(graph->window.renderer);
 
-	SDL_SetRenderDrawColor(graph->window.renderer, graph->fg_color.r, graph->fg_color.g, graph->fg_color.b, NGRAPH_DEFAULT_FG_ALPHA); // black 
+	SDL_SetRenderDrawColor(graph->window.renderer, graph->fg_color.r, graph->fg_color.g, graph->fg_color.b, GRAPHING_DEFAULT_FG_ALPHA); // black 
 	// Redraw sidebar_scale
 	SDL_RenderDrawLines(graph->window.renderer, &graph->sidebar_scale[0], ARR_SIZE(graph->sidebar_scale));
 
@@ -727,7 +727,7 @@ void graph_render(graph_t* graph)
 		graph->_render_points_f[oidx].y = graph->zeroy - (yy * yscale);
 	}
 
-	SDL_SetRenderDrawColor(graph->window.renderer, graph->plot_color.r, graph->plot_color.g, graph->plot_color.b, NGRAPH_DEFAULT_PLOT_ALPHA);
+	SDL_SetRenderDrawColor(graph->window.renderer, graph->plot_color.r, graph->plot_color.g, graph->plot_color.b, GRAPHING_DEFAULT_PLOT_ALPHA);
 	SDL_RenderDrawLinesF(graph->window.renderer, &(graph->_render_points_f)[0], graph->graph_n);
 	SDL_RenderPresent(graph->window.renderer);
 }
@@ -736,13 +736,13 @@ void graph_render(graph_t* graph)
 /* */
 void graph_addpoint(graph_t* graph, int x, float y)
 {
-	#ifdef NGRAPH_USE_MUTEX
+	#ifdef GRAPHING_USE_MUTEX
 		SDL_LockMutex(graph->mutex);
 	#endif
 
 	graph->points_f[x] = y;
 
-	#ifdef NGRAPH_USE_MUTEX
+	#ifdef GRAPHING_USE_MUTEX
 		SDL_UnlockMutex(graph->mutex);
 	#endif
 }
@@ -751,14 +751,14 @@ void graph_addpoint(graph_t* graph, int x, float y)
 /* */
 void graph_appendpoint(graph_t* graph, float y)
 {
-	#ifdef NGRAPH_USE_MUTEX
+	#ifdef GRAPHING_USE_MUTEX
 		SDL_LockMutex(graph->mutex);
 	#endif
 
 	graph->points_f[graph->pos] = y; // graph_addpoint(graph, graph->pos, y);
 	graph->pos = (graph->pos + 1) % graph->graph_n;
 	
-	#ifdef NGRAPH_USE_MUTEX
+	#ifdef GRAPHING_USE_MUTEX
 		SDL_UnlockMutex(graph->mutex);
 	#endif
 }
@@ -869,7 +869,7 @@ void close_window(Window* w)
 /* */
 void graph_shutdown()
 {
-	#ifndef NGRAPH_NO_CACHING
+	#ifndef GRAPHING_NO_CACHING
 		// Destroy caches
 		font_entry_t *elem_fnt, *tmp_fnt;
 		HASH_ITER(hh, /* map name */ g_font_cache, elem_fnt, tmp_fnt) {
@@ -896,4 +896,4 @@ void graph_shutdown()
 }
 #endif
 
-#endif //__NGRAPH_H_
+#endif //__GRAPHING_H_

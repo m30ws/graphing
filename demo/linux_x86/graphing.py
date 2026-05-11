@@ -8,7 +8,7 @@ import time
 
 if __name__ == '__main__':
 	GRAPHGRID_PORT = 5056
-	BINFILE = "./ngraph.exe"
+	BINFILE = "./graphing"
 
 	if len(sys.argv) > 1:
 		NGRAPHS = int(sys.argv[1])

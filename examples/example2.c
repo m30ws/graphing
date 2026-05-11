@@ -13,7 +13,7 @@
 #include <time.h>
 
 #include <SDL2/SDL.h>
-#include <ngraph.h>
+#include <graphing.h>
 
 #define RANDINT(mx, mn) ((int)(((float)rand()/RAND_MAX) * ((mx)-(mn)) + (mn)))
 #define INC(x, mx) (x) = ((x) + 1) % (mx)
